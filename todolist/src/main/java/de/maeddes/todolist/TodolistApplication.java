@@ -40,7 +40,7 @@ class Todo{
 
 }
 
-@RepositoryRestResource
+@RepositoryRestResource(path = "todos")
 interface TodoRepository extends CrudRepository<Todo, String> {
 
 }
