@@ -1,0 +1,4 @@
+kubectl expose deployment todoui --type=LoadBalancer --port=8081
+kubectl expose deployment todolist --type=LoadBalancer --name=todo-lb --port 8080
+kubectl create deployment todoui --image=maeddes/todoui:v0.1
+kubectl create deployment todolist --image=maeddes/todolist:v0.1
