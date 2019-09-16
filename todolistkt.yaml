@@ -27,6 +27,8 @@ spec:
         env:
         - name: SPRING_PROFILES_ACTIVE
           value: prod
+          name: POSTGRES_HOST
+          value: postgresdb
         imagePullPolicy: IfNotPresent
         name: todolistkt
         readinessProbe:
