@@ -1,0 +1,32 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: todoui
+  name: todoui
+  namespace: default
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: todoui
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: todoui
+    spec:
+      containers:
+      - env:
+        - name: BACKEND_HOST
+          value: localhost
+        image: maeddes/todoui:v0.1
+        imagePullPolicy: IfNotPresent
+        name: todoui
+      restartPolicy: Always

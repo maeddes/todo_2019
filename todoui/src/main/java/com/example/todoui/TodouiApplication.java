@@ -2,6 +2,9 @@ package com.example.todoui;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -21,9 +24,16 @@ public class TodouiApplication {
 	@Value("${backend.port:8080}")
 	String backendPort;
 
-	String endpoint = "http://"+backendHost+"/"+backendPort;
+	String endpoint;
 
 	RestTemplate template = new RestTemplate();
+
+	@PostConstruct
+	private void initEndpoint(){
+
+		endpoint = "http://"+backendHost+":"+backendPort;
+
+	}
 
 	@GetMapping
 	public String getItems(Model model) {
@@ -51,6 +61,8 @@ public class TodouiApplication {
 		return "redirect:/";
 
 	}
+
+	
 
 	public static void main(String[] args) {
 		SpringApplication.run(TodouiApplication.class, args);
