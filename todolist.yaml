@@ -26,4 +26,10 @@ spec:
       - image: maeddes/todolist:v0.1
         imagePullPolicy: IfNotPresent
         name: todolist
+        readinessProbe:
+          failureThreshold: 1
+          httpGet:
+            path: /
+            port: 8080
+            scheme: HTTP
       restartPolicy: Always

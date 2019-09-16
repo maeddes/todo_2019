@@ -29,4 +29,10 @@ spec:
         image: maeddes/todoui:v0.1
         imagePullPolicy: IfNotPresent
         name: todoui
+        readinessProbe:
+          failureThreshold: 1
+          httpGet:
+            path: /
+            port: 8081
+            scheme: HTTP
       restartPolicy: Always
