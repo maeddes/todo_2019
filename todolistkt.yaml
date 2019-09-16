@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: todolistkt
+  name: todolistkt
+  namespace: default
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: todolistkt
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: todolistkt
+    spec:
+      containers:
+      - image: maeddes/todolistkt:v0.1
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: prod
+        imagePullPolicy: IfNotPresent
+        name: todolistkt
+        readinessProbe:
+          failureThreshold: 1
+          httpGet:
+            path: /
+            port: 8080
+            scheme: HTTP
+      restartPolicy: Always
