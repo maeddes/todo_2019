@@ -24,6 +24,9 @@ spec:
     spec:
       containers:
       - image: maeddes/todolist:v0.1
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: dev
         imagePullPolicy: IfNotPresent
         name: todolist
         readinessProbe:

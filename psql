@@ -1,0 +1,2 @@
+psql -h localhost -p 5432 -d mydb -U matthias --password
+
