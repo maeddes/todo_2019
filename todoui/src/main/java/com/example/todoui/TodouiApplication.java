@@ -39,9 +39,22 @@ public class TodouiApplication {
 	public String getItems(Model model) {
 
 		System.out.println(" Invoking: " + endpoint + "/todos/");
-		ResponseEntity<String[]> response = template.getForEntity(endpoint + "/todos/", String[].class);
+		ResponseEntity<String[]> response = null;
+
+		try {
+			
+            response = template.getForEntity(endpoint + "/todos/", String[].class);
+
+		} catch (Exception e) {
+
+			System.out.println(" Backend down" );
+			String[] responseValue = new String[] { "Fix your backend"};
+			model.addAttribute("items", responseValue);
+		}
+
 		if (response != null)
 			model.addAttribute("items", response.getBody());
+
 		return "items";
 
 	}
@@ -49,7 +62,15 @@ public class TodouiApplication {
 	@PostMapping
 	public String addItem(String toDo) {
 
-		template.postForEntity(endpoint + "/todos/" + toDo, null, String.class);
+		try {
+			
+			template.postForEntity(endpoint + "/todos/" + toDo, null, String.class);
+		
+		} catch (Exception e) {
+
+			System.out.println(" POST failed ");
+			
+		}
 		return "redirect:/";
 
 	}
@@ -57,7 +78,15 @@ public class TodouiApplication {
 	@PostMapping("{toDo}")
 	public String setItemDone(@PathVariable String toDo) {
 
-		template.delete(endpoint + "/todos/" + toDo);
+		try {
+
+			template.delete(endpoint + "/todos/" + toDo);
+
+		} catch (Exception e) {
+
+			System.out.println(" DELETE failed ");
+
+		}
 		return "redirect:/";
 
 	}
