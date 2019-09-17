@@ -1,0 +1,9 @@
+        readinessProbe:
+          failureThreshold: 1
+          httpGet:
+            path: /
+            port: 8080
+            scheme: HTTP
+
+
+

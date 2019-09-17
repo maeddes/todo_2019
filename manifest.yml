@@ -1,0 +1,7 @@
+applications:
+- name: todo-demo-2019
+  instances: 1
+  path: todoui/target/todoui-0.0.1-SNAPSHOT.jar
+  env:
+    BACKEND_HOST: 
+    BACKEND_PORT: 80
