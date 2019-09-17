@@ -25,14 +25,14 @@ spec:
       containers:
       - env:
         - name: BACKEND_HOST
-          value: localhost
+          value: todolist
         image: maeddes/todoui:v0.1
         imagePullPolicy: IfNotPresent
         name: todoui
         readinessProbe:
           failureThreshold: 1
           httpGet:
-            path: /
+            path: /actuator/health
             port: 8081
             scheme: HTTP
       restartPolicy: Always
