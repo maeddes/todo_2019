@@ -1,9 +1,1 @@
-        readinessProbe:
-          failureThreshold: 1
-          httpGet:
-            path: /
-            port: 8080
-            scheme: HTTP
-
-
-
+cf login -a api.dhcpaas-sys-p03-edc5.dhc.corpintra.net --skip-ssl-validation
