@@ -8,3 +8,12 @@ in dir todolist:
 ```
 mvn spring-boot:run -Dspring.profiles.active=prod
 ```
+in dir todoui:
+```
+mvn spring-boot:run -Dserver.port=8081
+```
+see tags:
+
+`git t`
+
+change tags, e.g. `git checkout tags/v1.0`
