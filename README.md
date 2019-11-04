@@ -7,6 +7,8 @@ docker run --name postgresdb -e POSTGRES_PASSWORD=password -e POSTGRES_USER=matt
 in dir todolist:
 ```
 mvn spring-boot:run -Dspring.profiles.active=prod
+
+mvn spring-boot:run -Dspring.profiles.active=dev
 ```
 in dir todoui:
 ```
